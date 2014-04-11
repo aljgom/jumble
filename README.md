@@ -1,6 +1,6 @@
 Jumble
 ====================
-#Instructions 
+##Instructions 
 Can you create a program to solve a word jumble?  
 ([More info here.](http://en.wikipedia.org/wiki/Jumble))  The program should accept a string 
 as input, and then return a list of words that can be
@@ -13,7 +13,7 @@ from using any helper modules or imports (e.g. itertools).
 In order to verify your words, just download an 
 English word list.
 
-#Implementation
+##Implementation
 The file `jumble.py` contains the first implementations of the solution.
 
 The function `jumble2(word)` solves the problem by finding every permutation of 
@@ -30,7 +30,7 @@ dictionary
 
 We need something FASTER!
 
-
+##Better Solution
 The file `jumble_fast.py` uses a different approach. It pre processes the words file,
 by grouping all the words that are anagrams with each other, and creating a dictionary
 of anagrams, each key is a set of letter and the value is a list with all the anagrams
