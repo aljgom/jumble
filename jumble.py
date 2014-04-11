@@ -34,20 +34,22 @@ def jumble2(word):
 # finds if any combination is an english word
 def _jumble2(charcount,prefix):
     global unique, result 
-    for i in xrange(0,len(unique)): 
+    for i in xrange(0,len(unique)):         # for every unique letter
         if charcount[i] > 0:
-            prefix.append(unique[i])
-            charcount[i] -=1
-            if "".join(prefix) in worddict: result += ["".join(prefix)]
-            _jumble2( charcount,prefix)
-            charcount[i]+=1
-            prefix.pop()
+            prefix.append(unique[i])        # add the next unique available letter to the word
+            charcount[i] -=1                # substract the count for that letter
+            if "".join(prefix) in worddict: # we get one result. Compare with the dictionary to see if it's an English word
+                result += ["".join(prefix)]
+                print "".join(prefix)
+            _jumble2( charcount,prefix)     # use recursion with the remaining characters
+            charcount[i]+=1                 # remove the letter and increase it's counter
+            prefix.pop()                    
     
 
 # Wrapper function, sets the lists to call recursive function, and prints the result  
 def jumble3(word):
     global unique
-    word = list(word)	                    #sort letters
+    word = list(word)	                    # sort letters
     word.sort()
     unique = [word[0]]                      # will countain a list of each different character
     charcount = [1]                         # list of how many times each character repeats
@@ -71,7 +73,7 @@ def _jumble3(charcount):
     for i in xrange(0,len(unique)):         # make a key for the dictionary
         key *=10
         key += charcount[i] 
-    if key in memo : return list(memo[key])	# if the value has already been calculated, return it
+    if key in memo : return list(memo[key]) # if the value has already been calculated, return it
     ret=[]
     temp=[]
     for i in xrange(0,len(unique)):         # for each available letter
@@ -83,7 +85,7 @@ def _jumble3(charcount):
                 temp[j]= unique[i] +temp[j] # add new letter to the result
             ret += temp                     # add result to return list
             charcount[i] +=1
-    memo[key] = list(ret)					# store the result to have it ready if the function is called again with the same value
+    memo[key] = list(ret)		    # store the result to have it ready if the function is called again with the same value
     return ret
 
 
@@ -99,7 +101,9 @@ result =[]
 memo = {}		# is a dictionary of return values for the _jumble3 function
 
 word = 'ablebcd'
+print 'Running jumble2'
 jumble2(word)
+print 'Running jumble3'
 jumble3(word)
 
 
