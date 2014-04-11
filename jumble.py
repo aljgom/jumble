@@ -1,17 +1,7 @@
-'''Can you create a program to solve a word jumble?  
-(More info here.)  The program should accept a string 
-as input, and then return a list of words that can be
-created using the submitted letters.  For example, on
-the input "dog", the program should return a set of 
-words including "god", "do", and "go".
- 
-Please implement the program in Python but refrain
-from using any helper modules or imports (e.g. itertools). 
-In order to verify your words, just download an 
-English word list (here are a few).  Then upload 
-your program to GitHub or Gist, and send it back!
+''' Two different implementations for the problem, both slower than the implementation in jumble_fast.py
 '''
- 
+
+
 # Wrapper function, sets the lists to call recursive function, and prints the result    
 def jumble2(word):
     global unique, result
@@ -103,6 +93,7 @@ memo = {}		# is a dictionary of return values for the _jumble3 function
 word = 'ablebcd'
 print 'Running jumble2'
 jumble2(word)
+print
 print 'Running jumble3'
 jumble3(word)
 

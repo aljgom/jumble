@@ -1,18 +1,7 @@
-'''Can you create a program to solve a word jumble?  
-(More info here.)  The program should accept a string 
-as input, and then return a list of words that can be
-created using the submitted letters.  For example, on
-the input "dog", the program should return a set of 
-words including "god", "do", and "go".
- 
-Please implement the program in Python but refrain
-from using any helper modules or imports (e.g. itertools). 
-In order to verify your words, just download an 
-English word list (here are a few).  Then upload 
-your program to GitHub or Gist, and send it back!
+''' Final implementation for the problem, works the fastest out of the 3
 '''
  
-import time
+
 # Find all the words that are anagrams with each other and group them together
 # use a dictionary structure to be able to look up anagrams of sets of letters
 def preprocessDictionary():
@@ -20,13 +9,13 @@ def preprocessDictionary():
     f = open('wordlist.txt','r')
     for line in f:   
             if "'" in line or "-" in line: continue     # get rid of the words that contain an apostrophe or dash 
-            key = list(line[0:-1])                   # don't use the last character since it's '\n'     
+            key = list(line[0:-1])                      # don't use the last character since it's '\n'     
             key.sort()
             key = "".join(key)
             if key in anagrams:
                 anagrams[key] = anagrams[key] + [line[0:-1]]
             else: anagrams[key] = [line[0:-1]]
-    del anagrams['']                                   #remove the empty string from dictionary
+    del anagrams['']                                   # remove the empty string from dictionary
     # save the dictionary
     f2=open ('anagrams.txt' , 'w')
     for key in anagrams.keys():
@@ -42,7 +31,7 @@ def loadAnagrams():
     f = open('anagrams.txt','r')
     for line in f:
         key = line.split(" ")[0]
-        anagrams[ key ] = line[0:-1].split(" ")[1:]     #ignore the last character in line ('\n')
+        anagrams[ key ] = line[0:-1].split(" ")[1:]     # ignore the last character in line ('\n')
     return anagrams
 
 
